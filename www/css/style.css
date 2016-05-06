@@ -1,0 +1,23 @@
+/* Empty. Add your own CSS if you like */
+.mainbody {
+   
+    background-color: #0F034E;
+}
+
+
+.main-logo {
+    height: 250px !important;
+    width: 250px !important;
+  display: block;
+  margin: 0 auto;
+  }
+
+
+  
+  
+  .menu-logo {
+    height: 180px !important;
+    width: 180px !important;
+    margin: 0 auto;
+}
+
