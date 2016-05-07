@@ -5,7 +5,7 @@
         .module('kebabZone')
         .factory('menuService', menuService);
 
-    function menuService($ionicHistory, $rootScope, dataService, CacheFactory, MenuData, $firebaseObject, $q) {
+    function menuService($ionicHistory, $rootScope, dataService, CacheFactory, $firebaseObject, $q) {
         var CACHE_NAME = 'kebabZoneCache';
         var MAINMENU_CACHE_KEY = 'MainMenu';
         var AllMENU_CACHE_KEY = 'AllMenu';
@@ -26,17 +26,9 @@
             ref.on("value", function (snapshot) {
                 // console.log(snapshot.val());
                 cache.put(AllMENU_CACHE_KEY, snapshot.val());
-
-
-
             }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
-
-
-
-
-
         };
 
 
@@ -69,16 +61,27 @@
             var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).startermenu) || [];
             return _.compact(angular.copy(jsonObject));
         };
-        
+
         service.getMealDealMenu = function () {
             var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).mealdealmenu) || [];
             return _.compact(angular.copy(jsonObject));
         };
-        
+
         service.getChikenDelightMenu = function () {
             var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).chikendelightmenu) || [];
             return _.compact(angular.copy(jsonObject));
         };
+
+        service.getKebabMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).kebabmenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
+        service.getKidsDealMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).kidsmealsmenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
 
 
 

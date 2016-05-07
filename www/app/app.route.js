@@ -39,6 +39,16 @@
                     templateUrl: 'app/mealdeals/mealdealmenu.html',
                     controller: 'mealdealmenuController',
                 })
+                .state('kebabs', {
+                    url: '/kebabs',
+                    templateUrl: 'app/kebabs/kebabsmenu.html',
+                    controller: 'kebabsmenuController',
+                })
+                .state('kidsdeals', {
+                    url: '/kidsdeals',
+                    templateUrl: 'app/kidsdeals/kidsdealsmenu.html',
+                    controller: 'kidsdealsmenuController',
+                })
                 .state('starters', {
                     url: '/starters',
                     templateUrl: 'app/starters/startersmenu.html',

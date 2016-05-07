@@ -9,12 +9,6 @@
         function init() {
 
             $scope.items = menuService.getMenu();
-            
-            console.log($scope.items );
-
-           
-
-
         }
 
 
