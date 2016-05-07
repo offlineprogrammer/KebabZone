@@ -1,13 +1,14 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('kebabZone')
         .factory('menuService', menuService);
 
-    function menuService($ionicHistory, $rootScope, dataService, CacheFactory,MenuData) {
+    function menuService($ionicHistory, $rootScope, dataService, CacheFactory, MenuData, $firebaseObject, $q) {
         var CACHE_NAME = 'kebabZoneCache';
         var MAINMENU_CACHE_KEY = 'MainMenu';
+        var AllMENU_CACHE_KEY = 'AllMenu';
 
 
         var cache;
@@ -18,36 +19,65 @@
 
         var service = {};
 
-        
-        service.getMenu = function() {
-            return angular.copy(MenuData.mainMenuData);
 
-            
+        service.getAllMenuData = function () {
+
+            var ref = new Firebase("https://kebab-zone.firebaseio.com/");
+            ref.on("value", function (snapshot) {
+                // console.log(snapshot.val());
+                cache.put(AllMENU_CACHE_KEY, snapshot.val());
+
+
+
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+
+
+
+
+
+        };
+
+
+        service.getMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).mainmenu) || [];
+            return _.compact(angular.copy(jsonObject))
+        };
+
+        service.getBurgerMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).burgermenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
+        service.getChikenBurgerMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).chikenburgermenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
+        service.getSteakBurgerMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).steakburgermenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
+        service.getOtherBurgerMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).otherburgermenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+
+        service.getStartersMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).startermenu) || [];
+            return _.compact(angular.copy(jsonObject));
         };
         
-        
-        service.getBurgerMenu = function() {
-            return angular.copy(MenuData.burgerMenuData);
-
-            
+        service.getMealDealMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).mealdealmenu) || [];
+            return _.compact(angular.copy(jsonObject));
         };
         
-         service.getChikenBurgerMenu = function() {
-            return angular.copy(MenuData.chikenburgerMenuData);
-
-            
-        };
-        
-        service.getSteakBurgerMenu = function() {
-            return angular.copy(MenuData.steakburgerMenuData);
-
-            
-        };
-        
-        service.getOtherBurgerMenu = function() {
-            return angular.copy(MenuData.otherburgerMenuData);
-
-            
+        service.getChikenDelightMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).chikendelightmenu) || [];
+            return _.compact(angular.copy(jsonObject));
         };
 
 
@@ -72,4 +102,4 @@
 
 
     }
-}());
+} ());

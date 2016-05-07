@@ -33,6 +33,16 @@
                     url: '/burgersmenu/otherburgersmenu',
                     templateUrl: 'app/burgers/otherburger/otherburgermenu.html',
                     controller: 'otherburgerController',
+                })
+                .state('mealdeals', {
+                    url: '/mealdeals',
+                    templateUrl: 'app/mealdeals/mealdealmenu.html',
+                    controller: 'mealdealmenuController',
+                })
+                .state('starters', {
+                    url: '/starters',
+                    templateUrl: 'app/starters/startersmenu.html',
+                    controller: 'startersController',
                 });
             $urlRouterProvider.otherwise('/startup');
         });
