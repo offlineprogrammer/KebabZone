@@ -2,4 +2,4 @@
 
 A Restaurant Menu App 
 
-An APP built using Ionic & Firebase
+An App built using Ionic & Firebase
