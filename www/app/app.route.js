@@ -49,6 +49,16 @@
                     templateUrl: 'app/kidsdeals/kidsdealsmenu.html',
                     controller: 'kidsdealsmenuController',
                 })
+                .state('softdrinks', {
+                    url: '/softdrinks',
+                    templateUrl: 'app/softdrinks/softdrinksmenu.html',
+                    controller: 'softdrinksController',
+                })
+                .state('sundrise', {
+                    url: '/sundrise',
+                    templateUrl: 'app/sundrise/sundrisemenu.html',
+                    controller: 'sundriseController',
+                })
                 .state('starters', {
                     url: '/starters',
                     templateUrl: 'app/starters/startersmenu.html',

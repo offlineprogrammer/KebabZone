@@ -81,6 +81,16 @@
             var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).kidsmealsmenu) || [];
             return _.compact(angular.copy(jsonObject));
         };
+        
+        service.getSoftDrinksMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).softdrinksmenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
+        
+        service.getSundriseMenu = function () {
+            var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).sundriesmenu) || [];
+            return _.compact(angular.copy(jsonObject));
+        };
 
 
 
