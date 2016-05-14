@@ -1,39 +1,35 @@
 <ion-view>
-<ion-header-bar align-title="center" class="bar-energized">
+    <ion-header-bar align-title="center" class="bar-energized">
 
-<h1 class="title">Main Menu</h1>
+        <h1 class="title">Main Menu</h1>
 
-</ion-header-bar>
-<ion-content class="outer text-center" >
+    </ion-header-bar>
+    <ion-content class="outer text-center">
 
 
-
-<div class="row" id="buttonsFirstWrapper">
-        <div class="col col-33 text-center"><a href="javascript:void(0);" class="item item-image" ui-sref="kebabs"><img src="img/kebab.png" class="menu-logo" /></a><h2>Kebabs</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="burgersmenu"><img src="img/burger.jpg" class="menu-logo" /></a><h2>Burgers</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ><img src="img/Pizza.jpg" class="menu-logo" /></a><h2>Pizzas</h2></div>
-    </div>
-    <div class="row">
-         <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/chips.jpg" class="menu-logo" /></a><h2>Chips</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/bread.jpg" class="menu-logo" /></a><h2>Bead & Garlic Bread</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="starters"><img src="img/starters.jpg" class="menu-logo"/></a><h2>Starters</h2></div>
-    </div>
-    <div class="row">
-         <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="softdrinks"><img src="img/drinks.png" class="menu-logo"/></a><h2>Soft Drinks</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/rice.jpg" class="menu-logo" /></a><h2>Rice</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/unknown.jpg" class="menu-logo" /></a><h2>Box of Meat</h2></div>
-    </div>
-    <div class="row">
-         <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="kidsdeals"><img src="img/kids.jpg" class="menu-logo" /></a><h2>Kids Meal</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="sundrise"><img src="img/unknown.jpg" class="menu-logo" /></a><h2>Sundries</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image" ui-sref="mealdeals"><img src="img/MealDeal.png" class="menu-logo" /></a><h2>Meal Deal</h2></div>
-    </div>
-    <div class="row">
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/unknown.jpg" class="menu-logo" /></a><h2>Salad</h2></div> 
-        <div class="col col-33 "><a href="javascript:void(0);" class="item item-image"><img src="img/offer.jpg" class="menu-logo"/></a><h2>Chicken Delight</h2></div>
-        <div class="col col-33"><a href="javascript:void(0);" class="item item-image"><img src="img/unknown.jpg" class="menu-logo" /></a><h2>Sauce</h2></div>
-        
-    </div>
-
-</ion-content>
+        <div class="list">
+            <div ng-repeat="number in items">
+                <div class="row" ng-if="$index % 3 == 0">
+                    <div class="col col-33">
+                        <a href="javascript:void(0);" class="item item-image" ui-sref="{{ items[$index].sref }}">
+                            <img ng-src="{{ items[$index].image }}" class="menu-logo">
+                        </a>
+                        <h2>{{ items[$index].name }}</h2>
+                    </div>
+                    <div class="col col-33">
+                        <a href="javascript:void(0);" class="item item-image" ui-sref="{{ items[$index + 1].sref }}">
+                            <img ng-src="{{ items[$index + 1].image }}" class="menu-logo">
+                        </a>
+                        <h2>{{ items[$index + 1].name }}</h2>
+                    </div>
+                    <div class="col col-33">
+                        <a href="javascript:void(0);" class="item item-image" ui-sref="{{ items[$index + 2].sref }}">
+                            <img ng-src="{{ items[$index + 2].image }}" class="menu-logo">
+                        </a>
+                        <h2>{{ items[$index + 2].name }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
