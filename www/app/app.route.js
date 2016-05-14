@@ -14,7 +14,7 @@
                     templateUrl: 'app/mainmenu/menu.html',
                     controller: 'MenuController',
                 })
-                .state('burgersmenu', {
+                .state('burgers', {
                     url: '/burgersmenu',
                     templateUrl: 'app/burgers/burgersmenu.html',
                     controller: 'burgersController',
