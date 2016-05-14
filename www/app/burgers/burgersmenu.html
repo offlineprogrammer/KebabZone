@@ -7,23 +7,25 @@
     </ion-header-bar>
     <ion-content class="outer text-center">
 
-
-
-        <div class="list">
-            <div class="row" ng-repeat="item in items">
-
-                <div class="col col-33 col-offset-33">
-                    <a href="javascript:void(0);" class="item item-image" ui-sref="{{ item.sref }}" >
-                        <img ng-src="{{ item.image }}" class="menu-logo">
-                    </a>
-                    <h2>{{ item.name }}</h2>
+       <div class="list">
+            <div ng-repeat="number in items">
+                <div class="row" ng-if="$index % 2 == 0">
+                    <div class="col col-50" >
+                        <a href="javascript:void(0);" class="item item-image" ui-sref="{{ items[$index].sref }}">
+                            <img ng-src="{{ items[$index].image }}" class="menu-logo">
+                        </a>
+                        <h2>{{ items[$index].name }}</h2>
+                    </div>
+                    <div class="col col-50" ng-if="items[$index + 1]" >
+                        <a href="javascript:void(0);" class="item item-image" ui-sref="{{ items[$index + 1].sref }}">
+                            <img ng-src="{{ items[$index + 1].image }}" class="menu-logo">
+                        </a>
+                        <h2>{{ items[$index + 1].name }}</h2>
+                    </div>
+                   
                 </div>
-
             </div>
-
-
         </div>
 
-
-    </ion-content>
+   </ion-content>
 </ion-view>
