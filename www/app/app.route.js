@@ -59,6 +59,11 @@
                     templateUrl: 'app/sundrise/sundrisemenu.html',
                     controller: 'sundriseController',
                 })
+                .state('orderItem', {
+                    url: '/showOrderItem/:orderId',
+                    templateUrl: 'app/orderitem/orderitem.html',
+                    controller: 'orderitemController',
+                })
                 .state('starters', {
                     url: '/starters',
                     templateUrl: 'app/starters/startersmenu.html',
