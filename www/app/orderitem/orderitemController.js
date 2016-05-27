@@ -5,7 +5,7 @@
         .module('kebabZone')
         .controller('orderitemController', OrderItemController);
 
-    function OrderItemController($scope, $state, menuService,$stateParams,$ionicPopup) {
+    function OrderItemController($scope, $state, menuService,$stateParams,$ionicPopup,$ionicHistory) {
         function init() {
             
             var orderItemId = $stateParams.orderId;
@@ -19,13 +19,18 @@
             
         }
         
+        $scope.goBack = function () {
+                    $ionicHistory.goBack();
+                };
+                
+        
         function findSelectedOption(optionItems) {
             return _.find(optionItems, function (selectedOption) {
                 return selectedOption.selected === 1;
             });
         }
 
-      $scope.showOptions =  function (optionsItem) {
+      $scope.showOptions =  function (optionsItem,index) {
             
             var optionItems = optionsItem.Items; 
             optionItems =_.compact(angular.copy(optionItems))
@@ -67,10 +72,12 @@
                     delete $scope.data;
 
                     if (result) {
+                        optionsItem.name = result.name;
+                        
 
                     }
 
-                    //deferred.resolve(result);
+                   
                 });
                 
         }

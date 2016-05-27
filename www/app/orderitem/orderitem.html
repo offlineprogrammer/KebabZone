@@ -1,6 +1,6 @@
 <ion-view>
     <ion-header-bar align-title="center" class="bar-energized">
-        <button class="button button-icon icon ion-ios-arrow-back" ui-sref="mainmenu"></button>
+        <button class="button button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
 
         <h1 class="title">Burgers</h1>
 
@@ -29,7 +29,7 @@
                 Options
             </ion-item>
 
-            <ion-item class="item item-icon-left item-icon-right" ng-repeat="item in orderOptions" ng-click="showOptions(item)">
+            <ion-item class="item item-icon-left item-icon-right" ng-repeat="item in orderOptions" ng-click="showOptions(item,$index)">
                 <h4>
 
                <i class="icon ion-gear-a">
