@@ -11,15 +11,17 @@
 
             <div class="item item-avatar">
 
-                <h2>{{ orderItem.name }}</h2>
-                <p>{{ orderItem.description }}</p>
+                <div class="orderitem-title">{{ orderItem.name }}</div>
+                
             </div>
 
             <div class="item item-body">
                 <img class="img-responsive" ng-src="{{ orderItem.image }}">
-                <p>
+                <div class="orderitem-description">
+                
                     {{ orderItem.description }}
-                </p>
+                
+                </div>
 
             </div>
         </div>
@@ -30,16 +32,17 @@
             </ion-item>
 
             <ion-item class="item item-icon-left item-icon-right" ng-repeat="item in orderOptions" ng-click="showOptions(item,$index)">
-                <h4>
+                
 
-               <i class="icon ion-gear-a">
-                  
+               <i class="icon ion-gear-a option-symbol">
+                  <div class="option-name">
                    {{ item.name }}
+                   </div>
                    </i>
                
-               <i class="icon ion-chevron-right">                 
+               <i class="icon ion-chevron-right option-symbol">                 
                    </i>
-                   </h4>
+                   
             </ion-item>
         </ion-list>
         

@@ -21,3 +21,27 @@
     margin: 0 auto;
 }
 
+.option-name {
+    float: left;
+    margin-right: 20px;
+    font-size: 0.6em;
+    color: #822980;
+}
+
+.option-symbol {
+    
+    font-size: 0.2em;
+    color: #822980;
+}
+
+.orderitem-description {
+    
+    font-size: 1.2em;
+    color: #767676;
+}
+
+.orderitem-title {
+    
+    font-size: 1.2em;
+    color: #D7410B;
+}
