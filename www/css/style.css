@@ -45,3 +45,11 @@
     font-size: 1.2em;
     color: #D7410B;
 }
+
+.orderitem-price {
+    font-weight: bold;
+    padding-top: 15px;
+    white-space: nowrap;
+    color: #000000;
+    
+}

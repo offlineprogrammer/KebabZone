@@ -20,8 +20,18 @@
                 <div class="orderitem-description">
                 
                     {{ orderItem.description }}
+                    
+                   
                 
                 </div>
+                <div class="orderitem-price">
+                
+                    
+                    
+                     {{ orderItem.price | currency:"£" }} 
+                
+                </div>
+                
 
             </div>
         </div>
