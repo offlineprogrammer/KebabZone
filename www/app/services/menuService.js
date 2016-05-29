@@ -93,9 +93,14 @@
         };
 
         service.getOrderItem = function (orderItemId) {
-            var jsonObject = cache.get(AllMENU_CACHE_KEY).cheesychickenburger;
-            
-            return jsonObject;
+            switch (orderItemId) {
+                case 'cheesychickenburger':
+                    return cache.get(AllMENU_CACHE_KEY).cheesychickenburger;
+                case 'hawaianchickenburger':
+                    return cache.get(AllMENU_CACHE_KEY).hawaianchickenburger;
+
+            }
+
         };
 
 
