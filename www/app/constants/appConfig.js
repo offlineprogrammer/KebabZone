@@ -3,11 +3,9 @@
 
     angular
         .module("kebabZone")
-        .constant('appConfig', {
-           
-            appName: 'Kebab Zone App',
-           
-            webApiRoot: 'https://www.googleapis.com/youtube/v3/'
+        .constant('appConfig', {           
+            appName: 'Kebab Zone App',           
+            fireBaseURL: 'https://kebab-zone.firebaseio.com/'
 
         });
 }());

@@ -5,7 +5,7 @@
         .module('kebabZone')
         .factory('menuService', menuService);
 
-    function menuService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q) {
+    function menuService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q,appConfig) {
         var CACHE_NAME = 'kebabZoneCache';
         var MAINMENU_CACHE_KEY = 'MainMenu';
         var AllMENU_CACHE_KEY = 'AllMenu';
@@ -22,7 +22,7 @@
 
         service.getAllMenuData = function () {
 
-            var ref = new Firebase("https://kebab-zone.firebaseio.com/");
+            var ref = new Firebase(appConfig.fireBaseURL);
             ref.on("value", function (snapshot) {
                 // console.log(snapshot.val());
                 cache.put(AllMENU_CACHE_KEY, snapshot.val());
