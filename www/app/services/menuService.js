@@ -102,6 +102,8 @@
                     return cache.get(AllMENU_CACHE_KEY).plainchickenburger;
                 case 'saladchickenburger':
                     return cache.get(AllMENU_CACHE_KEY).saladchickenburger;
+                case 'plainsteakburger':
+                    return cache.get(AllMENU_CACHE_KEY).plainsteakburger;
             }
 
         };
