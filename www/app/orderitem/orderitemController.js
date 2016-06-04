@@ -36,7 +36,7 @@
             optionItems =_.compact(angular.copy(optionItems))
             
             
-             var oSelectedOption = findSelectedOption(optionItems);
+             var oSelectedOption = findSelectedOption(optionItems, optionsItem.name);
            
             
          
