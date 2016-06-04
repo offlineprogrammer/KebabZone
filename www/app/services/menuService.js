@@ -5,7 +5,7 @@
         .module('kebabZone')
         .factory('menuService', menuService);
 
-    function menuService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q,appConfig) {
+    function menuService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q, appConfig) {
         var CACHE_NAME = 'kebabZoneCache';
         var MAINMENU_CACHE_KEY = 'MainMenu';
         var AllMENU_CACHE_KEY = 'AllMenu';
@@ -98,7 +98,10 @@
                     return cache.get(AllMENU_CACHE_KEY).cheesychickenburger;
                 case 'hawaianchickenburger':
                     return cache.get(AllMENU_CACHE_KEY).hawaianchickenburger;
-
+                case 'plainchickenburger':
+                    return cache.get(AllMENU_CACHE_KEY).plainchickenburger;
+                case 'saladchickenburger':
+                    return cache.get(AllMENU_CACHE_KEY).saladchickenburger;
             }
 
         };
