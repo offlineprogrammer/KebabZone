@@ -24,9 +24,9 @@
                 };
                 
         
-        function findSelectedOption(optionItems) {
+        function findSelectedOption(optionItems,name) {
             return _.find(optionItems, function (selectedOption) {
-                return selectedOption.selected === 1;
+                return selectedOption.name === name;
             });
         }
 
@@ -69,7 +69,7 @@
                 });
                 
                  prompt.then(function (result) {
-                    delete $scope.data;
+                   // delete $scope.data;
 
                     if (result) {
                         optionsItem.name = result.name;
