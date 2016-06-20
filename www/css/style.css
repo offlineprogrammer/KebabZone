@@ -53,3 +53,18 @@
     color: #000000;
     
 }
+
+.cart-count {
+  position: relative;
+  display: inline-block;
+  font-size: 0.75em;
+  height: 20px;
+  width: 20px;
+  top: -4px;
+  left: -4px;
+  text-align: center;
+  background-color: #D7410B;
+  border-radius: 50%; }
+
+.cart-count.none {
+  visibility: hidden; }

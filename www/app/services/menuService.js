@@ -6,7 +6,7 @@
         .factory('menuService', menuService);
 
     function menuService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q, appConfig) {
-        var CACHE_NAME = 'kebabZoneCache';
+        var CACHE_NAME = 'kebabZoneCacheMenu';
         var MAINMENU_CACHE_KEY = 'MainMenu';
         var AllMENU_CACHE_KEY = 'AllMenu';
 

@@ -3,10 +3,9 @@
 
     angular
         .module('kebabZone')
-        .controller('orderitemController', OrderItemController);
+        .controller('shoppingCartController', ShoppingCartController);
 
-    function OrderItemController($scope, $state, menuService,orderService,$stateParams,$ionicPopup,$ionicHistory) {
-         $scope.cartCount = orderService.count();
+    function ShoppingCartController($scope, $state, menuService,$stateParams,$ionicPopup,$ionicHistory) {
         function init() {
             
             var orderItemId = $stateParams.orderId;
@@ -22,17 +21,6 @@
         
         $scope.goBack = function () {
                     $ionicHistory.goBack();
-                };
-                
-        $scope.addToCart = function () {
-            var cartorderItem = {
-              name:  $scope.orderItem.name,
-              image:  $scope.orderItem.image,
-              price:  $scope.orderItem.price,
-            }
-            
-            orderService.addOrder(cartorderItem);
-                    
                 };
                 
         
