@@ -64,11 +64,17 @@
                     templateUrl: 'app/orderitem/orderitem.html',
                     controller: 'orderitemController',
                 })
+                .state('shoppingcart', {
+                    url: '/shoppingcart',
+                    templateUrl: 'app/shoppingcart/shoppingCart.html',
+                    controller: 'shoppingCartController',
+                })
                 .state('starters', {
                     url: '/starters',
                     templateUrl: 'app/starters/startersmenu.html',
                     controller: 'startersController',
                 });
+                
             $urlRouterProvider.otherwise('/startup');
         });
 }());

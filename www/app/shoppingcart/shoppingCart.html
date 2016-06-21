@@ -1,67 +1,31 @@
 <ion-view>
-    <ion-header-bar align-title="center" class="bar-energized">
-        <button class="button button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
+    <ion-header-bar align-title="center" class="bar-positive">
+        <button class="button button-icon icon ion-ios-home" ng-click="goBack()"></button>
 
-        <h1 class="title">Order</h1>
+        <h1 class="title">Orders</h1>
 
     </ion-header-bar>
     <ion-content class="outer text-center">
 
-        <div class="list card">
-
-            <div class="item item-avatar">
-
-                <div class="orderitem-title">{{ orderItem.name }}</div>
-                
-            </div>
-
-            <div class="item item-body">
-                <img class="img-responsive" ng-src="{{ orderItem.image }}">
-                <div class="orderitem-description">
-                
-                    {{ orderItem.description }}
-                    
-                   
-                
+        <ion-list>
+            <ion-item class="item-card no-padding item-text-wrap" ng-repeat="orderItem in items">
+                <div class="row row-top" >
+                <div class="col col-10 no-padding cart-image-container">
+                   <img ng-src="{{ orderItem.image }}">
                 </div>
-                <div class="orderitem-price">
-                
-                    
-                    
-                     {{ orderItem.price | currency:"£" }} 
-                
+                <div class="col col-50 text-left">
+                    <div class="order-name">{{ orderItem.name }}</div>
+                    <div class="order-description">{{ orderItem.description }}</div>
                 </div>
-                <div class="orderitem-buybutton">
-                
-                    <button class="button button-assertive button-block button-bold" ng-click="buy()" >Order</button>
-                    
-                   
-                
+                <div class="col text-right">
+                    <div class="orderitem-quantity"  ng-model="orderItem.quantity" ng-change="updateQuantity(orderItem)"
+                        ng-click="$event.stopPropagation()" kz-quantity>
+                    </div>
+                    <div class="orderitem-price" > {{ orderItem.price | currency:"£" }} </div>
                 </div>
-                
+                 </div>
 
-            </div>
-        </div>
-
-        <ion-listdiv class="list list-inset">
-            <ion-item class="item item-divider">
-                Options
-            </ion-item>
-
-            <ion-item class="item item-icon-left item-icon-right" ng-repeat="item in orderOptions" ng-click="showOptions(item,$index)">
-                
-
-               <i class="icon ion-gear-a option-symbol">
-                  <div class="option-name">
-                   {{ item.name }}
-                   </div>
-                   </i>
-               
-               <i class="icon ion-chevron-right option-symbol">                 
-                   </i>
-                   
-            </ion-item>
         </ion-list>
-        
+
     </ion-content>
 </ion-view>

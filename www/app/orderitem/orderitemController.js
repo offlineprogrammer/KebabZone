@@ -19,7 +19,15 @@
            
             
         }
+       
+        $scope.$on('orderService:countChanged', function (event, count) {
+            $scope.cartCount = count;
+        });
         
+        $scope.goToCart = function () {
+                    $state.go('shoppingcart');
+                };
+                 
         $scope.goBack = function () {
                     $ionicHistory.goBack();
                 };
@@ -29,12 +37,32 @@
               name:  $scope.orderItem.name,
               image:  $scope.orderItem.image,
               price:  $scope.orderItem.price,
+              quantity: 1,
+              description: getOrderItemDesc()
             }
             
             orderService.addOrder(cartorderItem);
+            $scope.goToCart();
                     
                 };
                 
+        
+        function getOrderItemDesc() {
+            
+            var orderItemDesc = '';
+
+            _.each( $scope.orderOptions, function (item) {
+               
+                    orderItemDesc += item.name;
+                     orderItemDesc += ',';
+               
+            });
+
+            return orderItemDesc;
+           
+        }
+        
+        
         
         function findSelectedOption(optionItems,name) {
             return _.find(optionItems, function (selectedOption) {
