@@ -5,32 +5,40 @@
         .module('kebabZone')
         .controller('shoppingCartController', ShoppingCartController);
 
-    function ShoppingCartController($scope, $state, menuService, orderService,$stateParams,$ionicPopup,$ionicHistory) {
+    function ShoppingCartController($scope, $state, menuService, orderService, $stateParams, $ionicPopup, $ionicHistory) {
         function init() {
-            
-           $scope.items = orderService.get();
-            
-           
-            
-        }
-        
+            $scope.items = orderService.get();
+            calculateTotal();
+       };
+
         $scope.goBack = function () {
-                    $ionicHistory.goBack();
-                };
-                
-        
-         $scope.updateQuantity = function (orderItem) {
+            $state.go('mainmenu');
+        };
+
+
+        $scope.updateQuantity = function (orderItem) {
             orderItem.quantity = Number(orderItem.quantity);
             orderService.updateOrderItemQuantity(orderItem);
-            //calculateTotal();
+            $scope.items = orderService.get();
+            
+             if ($scope.items.length === 0) {
+                  $state.go('mainmenu');
+             }
+            
+            calculateTotal();
         };
-                
-        
-       
 
- 
+        function calculateTotal() {
+            
+            var total = 0;
 
+            _.each($scope.items, function (item) {
+                total += item.quantity * item.price;
+            });
 
-        init();
+            $scope.cartTotal = total;
+        }
+
+    init();
     }
-}());
+} ());

@@ -19,14 +19,52 @@
 
 
         service.updateOrderItemQuantity = function (orderItem) {
+
+            if (orderItem.quantity === 0) {
+
+                return service.remove(orderItem);
+
+            }
+
             var nOrderItem = find(orderItem);
             if (nOrderItem) {
                 nOrderItem.quantity = orderItem.quantity;
                 service.updateCache();
-                
+
             }
             return;
-           
+
+        };
+
+        service.remove = function (orderItem) {
+            var index = service.indexOf(orderItem);
+
+            if (index === -1) {
+
+            } else {
+
+                orders.splice(index, 1);
+                service.updateCache();
+
+            }
+
+
+
+            return;
+
+        };
+
+        service.indexOf = function (orderItem) {
+            var index = -1;
+
+            _.find(orders, function (nOrderItem, nOrderItemIndex) {
+                if (nOrderItem.name === orderItem.name && nOrderItem.description === orderItem.description) {
+                    index = nOrderItem;
+                    return true;
+                }
+
+            });
+            return index;
         };
 
 
@@ -96,7 +134,7 @@
                 return false;
             } else {
                 return _.find(orders, function (nOrderItem) {
-                    return (nOrderItem.name === orderItem.name && nOrderItem.description === orderItem.description);
+                    return nOrderItem.name === orderItem.name && nOrderItem.description === orderItem.description;
                 });
             }
         }

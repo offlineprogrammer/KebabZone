@@ -60,11 +60,13 @@
                     controller: 'sundriseController',
                 })
                 .state('orderItem', {
+                     cache: false,
                     url: '/showOrderItem/:orderId',
                     templateUrl: 'app/orderitem/orderitem.html',
                     controller: 'orderitemController',
                 })
                 .state('shoppingcart', {
+                    cache: false,
                     url: '/shoppingcart',
                     templateUrl: 'app/shoppingcart/shoppingCart.html',
                     controller: 'shoppingCartController',
