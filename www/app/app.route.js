@@ -10,6 +10,7 @@
                     controller: 'StartupController',
                 })
                 .state('mainmenu', {
+                     cache: false,
                     url: '/mainmenu',
                     templateUrl: 'app/mainmenu/menu.html',
                     controller: 'MenuController',
@@ -70,6 +71,12 @@
                     url: '/shoppingcart',
                     templateUrl: 'app/shoppingcart/shoppingCart.html',
                     controller: 'shoppingCartController',
+                })
+                .state('search', {
+                    cache: false,
+                    url: '/search',
+                    templateUrl: 'app/search/search.html',
+                    controller: 'searchController',
                 })
                 .state('starters', {
                     url: '/starters',
