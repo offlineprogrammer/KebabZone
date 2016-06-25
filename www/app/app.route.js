@@ -66,6 +66,12 @@
                     templateUrl: 'app/orderitem/orderitem.html',
                     controller: 'orderitemController',
                 })
+                .state('subMenuItem', {
+                     cache: false,
+                    url: '/showSubMenuItem/:submenuId',
+                    templateUrl: 'app/submenu/submenu.html',
+                    controller: 'submenuController',
+                })
                 .state('shoppingcart', {
                     cache: false,
                     url: '/shoppingcart',

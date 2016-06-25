@@ -12,7 +12,7 @@
 
 
         var cache;
-        var cachedmenue;
+        var cachedmenu;
 
 
         init();
@@ -26,12 +26,62 @@
             ref.on("value", function (snapshot) {
                 // console.log(snapshot.val());
                 cache.put(AllMENU_CACHE_KEY, snapshot.val());
+                getCachedMenu();
             }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
         };
+        
+        
+        service.getSubMenuItems = function (submenuId) {
+              switch (submenuId) {
+                case 'pizzamenu':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).pizzamenu));
+                case 'hawaianchickenburger':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).hawaianchickenburger));
+                case 'plainchickenburger':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).plainchickenburger));
+                case 'saladchickenburger':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).saladchickenburger)); 
+                case 'plainsteakburger':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).plainsteakburger)); 
+            }
+           
+        };
 
 
+        service.menuSearch = function (searchText) {
+             var deferred = $q.defer();
+             var omenuItems = _.first(findByName(searchText, 0), 20);
+             if (omenuItems === undefined || omenuItems.length === 0) {
+               
+            } else {
+                deferred.resolve(omenuItems);
+            }
+
+            return deferred.promise;
+            
+           
+        };
+        
+        function findByName(searchText, exactMatch) {
+            var searchTextLower = searchText.toLowerCase().trim();
+
+            if (exactMatch) {
+                return angular.copy(_.find(cachedmenu, function (menuItem) {
+                    if (menuItem.name){
+                    return menuItem.name.toLowerCase() === searchTextLower;
+                    }
+                }));
+            } else {
+                return angular.copy(_.filter(cachedmenu, function (menuItem) {
+                     if (menuItem.name){
+                    return menuItem.name.toLowerCase().indexOf(searchTextLower) >= 0;
+                     }
+                }));
+            }
+        }
+        
         service.getMenu = function () {
             var jsonObject = angular.fromJson(cache.get(AllMENU_CACHE_KEY).mainmenu) || [];
             return _.compact(angular.copy(jsonObject))
@@ -120,15 +170,22 @@
                 storageMode: 'localStorage'
             });
 
-            cachedmenue = angular.fromJson(cache.get(MAINMENU_CACHE_KEY)) || [];
+          
+            
+              getCachedMenu();
 
 
 
         }
+        
+         function getCachedMenu() {
+            cachedmenu = angular.fromJson(cache.get(AllMENU_CACHE_KEY)) || [];
 
-        function setCachedmenue(Menu) {
-            cache.put(MAINMENU_CACHE_KEY, channels);
         }
+        
+       
+
+       
 
 
     }

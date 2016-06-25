@@ -17,19 +17,19 @@
             <div ng-repeat="number in items">
                 <div class="row" ng-if="$index % 3 == 0">
                     <div class="col col-33">
-                        <a href="#/showSubMenuItem/{{items[$index].submenuId}}" class="item item-image" >
+                        <a ng-href="{{items[$index].orderId ? '#/showOrderItem/'+items[$index].orderId:'#/showSubMenuItem/'+items[$index].submenuId}}"  class="item item-image" >
                             <img ng-src="{{ items[$index].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index].name }}</h2>
                     </div>
                     <div class="col col-33">
-                        <a href="#/showSubMenuItem/{{items[$index + 1].submenuId}}" class="item item-image" >
+                        <a ng-href="{{items[$index + 1].orderId ? '#/showOrderItem/'+items[$index + 1].orderId:'#/showSubMenuItem/'+items[$index+1].submenuId}}" class="item item-image" >
                             <img ng-src="{{ items[$index + 1].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index + 1].name }}</h2>
                     </div>
                     <div class="col col-33">
-                        <a href="#/showSubMenuItem/{{items[$index + 2].submenuId}}" class="item item-image" >
+                        <a ng-href="{{items[$index + 2].orderId ? '#/showOrderItem/'+items[$index + 2].orderId:'#/showSubMenuItem/'+items[$index+2].submenuId}}" class="item item-image" >
                             <img ng-src="{{ items[$index + 2].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index + 2].name }}</h2>

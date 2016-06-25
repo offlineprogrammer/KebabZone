@@ -1,48 +1,48 @@
 <ion-view>
-     <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-positive">
         <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-search-strong" ng-click="goBack()"></button>
+            <button class="button button-icon icon ion-ios-search-strong" ng-click="goBack()"></button>
         </ion-nav-buttons>
 
-     <ion-nav-title>Search</ion-nav-title> 
-        
-         <ion-nav-buttons side="right">
-         <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
-         <div class="cart-count" ng-class="{ none: cartCount === 0 }">{{cartCount}}</div>
-         </ion-nav-buttons>
-    <ion-content class="outer text-center">
+        <ion-nav-title>Search</ion-nav-title>
 
-<div  class="padding">
-                    <div class="padding-bottom">
-                        <p class="text-center">Search by Name or Menu #</p>
-                        <ion-input class="item item-input suresupply-input">
-                            <i class="icon ion-search placeholder-icon"></i>
-                            <input title="Search" type="text" placeholder="Search" ng-model="typeAhead.searchText" ng-model-options="{ debounce: {'default': 750, 'blur': 0} }" ng-change="typeAheadSearch()">
-                        </ion-input>
-                    </div>
-                    <p class="text-center text-assertive" ng-show="typeAheadSearchComplete && !printers.length">Try again</p>
-                    <ion-list ng-show="typeAheadSearchComplete && printers.length">
-                        <ion-item class="item-borderless no-padding" ng-repeat="printer in printers" ng-class="{ 'selected' : isSelected($index) }" ng-click="select($index, $event)">
-                            <div class="row row-center">
-                                <div class="col type-ahead-search-image-container">
-                                    <img hp-src="printer.imageUrl">
-                                </div>
-                                <div class="col col-80">
-                                    <p>{{printer.alias || printer.name}}</p>
-                                    
-                                </div>
-                            </div>
-                            <div class="padding-bottom" ng-if="isSelected($index)">
-                                <div class="button-bar" ng-hide="isPrinterAdded(printer)">
-                                    <a class="button button-small button-positive" ng-click="addPrinter(printer)">View</a>
-                                    <a class="button button-small button-assertive" ng-click="shopNow(printer)">Shop</a>
-                                </div>
-                                
-                            </div>
-                        </ion-item>
-                    </ion-list>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
+            <div class="cart-count" ng-class="{ none: cartCount === 0 }">{{cartCount}}</div>
+        </ion-nav-buttons>
+        <ion-content class="outer text-center">
+
+            <div class="padding">
+                <div class="padding-bottom">
+                    <p class="text-center">Search by Name or Menu #</p>
+                    <ion-input class="item item-input searchmenu-input">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input title="Search" type="text" placeholder="Search" ng-model="typeAhead.searchText" ng-model-options="{ debounce: {'default': 750, 'blur': 0} }"
+                            ng-change="typeAheadSearch()">
+                    </ion-input>
                 </div>
+                <p class="text-center text-assertive" ng-show="typeAheadSearchComplete && !menuItems.length">Try again</p>
+                <ion-list ng-show="typeAheadSearchComplete && menuItems.length">
+                    <ion-item class="item-borderless no-padding" ng-repeat="menuItem in menuItems" ng-class="{ 'selected' : isSelected($index) }" ng-click="select($index, $event)"> 
+                        <div class="row row-center">
+                          <div class="col type-ahead-search-image-container">
+                                <img ng-src="{{ menuItem.image }}">
+                            </div>
+                            <div class="col col-80 text-left">
+                                <p>{{ menuItem.name}}</p>
 
-        
-    </ion-content>
+                            </div>
+                        </div>
+                         <div class="padding-bottom" ng-if="isSelected($index)">
+                                <div class="button-bar" >
+                                    <a class="button button-small button-assertive" href="#/showOrderItem/{{menuItem.orderId}}">Shop</a>
+                                </div> 
+
+            </div>
+            </ion-item>
+            </ion-list>
+            </div>
+
+
+        </ion-content>
 </ion-view>
