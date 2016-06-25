@@ -37,8 +37,8 @@
               switch (submenuId) {
                 case 'pizzamenu':
                     return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).pizzamenu));
-                case 'hawaianchickenburger':
-                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).hawaianchickenburger));
+                case 'burgers':
+                    return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).burgermenu));
                 case 'plainchickenburger':
                     return _.compact(angular.copy(cache.get(AllMENU_CACHE_KEY).plainchickenburger));
                 case 'saladchickenburger':
