@@ -16,7 +16,9 @@
             
         };
         
-        
+        $scope.goHome = function () {
+            $state.go('mainmenu');
+        };
         
         $scope.goToCart = function () {
                     $state.go('shoppingcart');
