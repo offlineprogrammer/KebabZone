@@ -68,7 +68,7 @@
                 })
                 .state('subMenuItem', {
                      cache: false,
-                    url: '/showSubMenuItem/:submenuId',
+                    url: '/showSubMenuItem/:submenuId/title/:name',
                     templateUrl: 'app/submenu/submenu.html',
                     controller: 'submenuController',
                 })

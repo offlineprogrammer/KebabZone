@@ -4,7 +4,7 @@
         <button class="button button-icon icon ion-ios-home" ng-click="goHome()"></button>
         </ion-nav-buttons>
 
-     <ion-nav-title>Burgers</ion-nav-title> 
+     <ion-nav-title>{{title}}</ion-nav-title> 
         
          <ion-nav-buttons side="right">
          <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
@@ -17,19 +17,19 @@
             <div ng-repeat="number in items">
                 <div class="row" ng-if="$index % 3 == 0">
                     <div class="col col-33">
-                        <a ng-href="{{items[$index].orderId ? '#/showOrderItem/'+items[$index].orderId:'#/showSubMenuItem/'+items[$index].submenuId}}"  class="item item-image" >
+                        <a ng-href="{{items[$index].orderId ? '#/showOrderItem/'+items[$index].orderId:'#/showSubMenuItem/'+items[$index].submenuId+'/title/'+items[$index].name}}"  class="item item-image" >
                             <img ng-src="{{ items[$index].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index].name }}</h2>
                     </div>
                     <div class="col col-33" ng-if="items[$index + 1]">
-                        <a ng-href="{{items[$index + 1].orderId ? '#/showOrderItem/'+items[$index + 1].orderId:'#/showSubMenuItem/'+items[$index+1].submenuId}}" class="item item-image" >
+                        <a ng-href="{{items[$index + 1].orderId ? '#/showOrderItem/'+items[$index + 1].orderId:'#/showSubMenuItem/'+items[$index+1].submenuId+'/title/'+items[$index+1].name}}" class="item item-image" >
                             <img ng-src="{{ items[$index + 1].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index + 1].name }}</h2>
                     </div>
                     <div class="col col-33" ng-if="items[$index + 2]">
-                        <a ng-href="{{items[$index + 2].orderId ? '#/showOrderItem/'+items[$index + 2].orderId:'#/showSubMenuItem/'+items[$index+2].submenuId}}" class="item item-image" >
+                        <a ng-href="{{items[$index + 2].orderId ? '#/showOrderItem/'+items[$index + 2].orderId:'#/showSubMenuItem/'+items[$index+2].submenuId+'/title/'+items[$index+2].name}}" class="item item-image" >
                             <img ng-src="{{ items[$index + 2].image }}" class="menu-logo">
                         </a>
                         <h2>{{ items[$index + 2].name }}</h2>

@@ -12,7 +12,8 @@
             var subMenuId = $stateParams.submenuId;
 
             $scope.items = menuService.getSubMenuItems(subMenuId);
-            
+
+             $scope.title = $stateParams.name;
             
         };
         
