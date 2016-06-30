@@ -134,20 +134,10 @@
         };
 
         service.getOrderItem = function (orderItemId) {
-            switch (orderItemId) {
-                case 'cheesychickenburger':
-                    return cache.get(AllMENU_CACHE_KEY).cheesychickenburger;
-                case 'hawaianchickenburger':
-                    return cache.get(AllMENU_CACHE_KEY).hawaianchickenburger;
-                case 'plainchickenburger':
-                    return cache.get(AllMENU_CACHE_KEY).plainchickenburger;
-                case 'saladchickenburger':
-                    return cache.get(AllMENU_CACHE_KEY).saladchickenburger;
-                case 'plainsteakburger':
-                    return cache.get(AllMENU_CACHE_KEY).plainsteakburger;
-                case 'margaretta':
-                    return cache.get(AllMENU_CACHE_KEY).margaretta;
-            }
+
+            return cache.get(AllMENU_CACHE_KEY)[orderItemId];
+
+            
 
         };
 

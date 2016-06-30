@@ -4,7 +4,7 @@
         <button class="button button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
         </ion-nav-buttons>
 
-     <ion-nav-title>Burgers</ion-nav-title> 
+     <ion-nav-title>{{ orderItem.name }}</ion-nav-title> 
         
          <ion-nav-buttons side="right">
          <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
