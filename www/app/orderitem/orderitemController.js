@@ -23,6 +23,11 @@
         $scope.$on('orderService:countChanged', function (event, count) {
             $scope.cartCount = count;
         });
+
+        $scope.$on('orderService:orderplaced', function (event, count) {
+            $scope.cartCount = 0;
+            $state.go('mainmenu');
+        });
         
         $scope.goToCart = function () {
                     $state.go('shoppingcart');

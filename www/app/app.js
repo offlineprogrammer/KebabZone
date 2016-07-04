@@ -6,6 +6,7 @@
         'ngCordova',
         'angular-cache',
         'firebase',
+        'angularMoment'
     ])
         .run(function ($window, appConfig) {
             ionic.Platform.ready(function () {

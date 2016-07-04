@@ -80,6 +80,37 @@
         };
 
 
+        service.placeOrders = function (orderItems, cartTotal) {
+            if (orderItems.length === 0) {
+                return;
+            }
+
+            var updatedorderItems = angular.copy(orderItems);
+
+            var ref = new Firebase(appConfig.fireBaseURL);
+            var usersRef = ref.child("orders");
+
+
+            var newPostRef = usersRef.push();
+            newPostRef.set({
+
+                cartTotal: cartTotal,
+                cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD HH:MM:SS'),
+                orders: updatedorderItems
+
+            });
+
+            orders = [];
+
+
+            $rootScope.$broadcast('orderService:orderplaced', service.count());
+
+            
+
+
+        };
+
+
         service.updateCache = function () {
             if (orders.length === 0) {
                 cache.remove(CACHE_KEY);
