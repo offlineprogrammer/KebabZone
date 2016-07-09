@@ -1,8 +1,19 @@
 /* Empty. Add your own CSS if you like */
 .mainbody {
    
-    background-color: #0F034E;
+    background-color: #0F034E !Important;
 }
+
+
+
+.main_options .item{
+  background-color: transparent !important;
+}
+
+.main_options {
+  background-color: transparent !important;
+}
+
 
 
 .main-logo {

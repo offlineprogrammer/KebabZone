@@ -9,6 +9,12 @@
                     templateUrl: 'app/startup/startup.html',
                     controller: 'StartupController',
                 })
+                .state('home', {
+                    url: '/home',
+                    templateUrl: 'app/home/home.html',
+                    controller: 'homeController',
+                })
+
                 .state('mainmenu', {
                      cache: false,
                     url: '/mainmenu',

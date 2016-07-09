@@ -3,9 +3,9 @@
 
     angular
         .module("kebabZone")
-        .controller('StartupController', StartupController);
+        .controller('homeController', HomeController);
 
-    function StartupController($ionicHistory, $scope, $state, $timeout, appConfig, menuService) {
+    function HomeController($ionicHistory, $scope, $state, $timeout, appConfig, menuService) {
         function init() {
             $ionicHistory.nextViewOptions({
                 disableBack: true

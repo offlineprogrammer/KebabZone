@@ -27,6 +27,7 @@
                 // console.log(snapshot.val());
                 cache.put(AllMENU_CACHE_KEY, snapshot.val());
                 getCachedMenu();
+                return true;
             }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
