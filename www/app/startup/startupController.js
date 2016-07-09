@@ -12,7 +12,13 @@
             });
 
 
-           $scope.menuReady =  menuService.getAllMenuData();
+          //  loadingService.show();
+
+
+            menuService.getAllMenuData().then(function () {
+
+                $state.go('home');
+            })
 
 
 

@@ -19,18 +19,24 @@
 
         var service = {};
 
+        service.isFirstLaunchComplete = function () {
+            return cache.get(AllMENU_CACHE_KEY) !== undefined;
+        };
+
 
         service.getAllMenuData = function () {
+            var deferred = $q.defer();
 
             var ref = new Firebase(appConfig.fireBaseURL);
             ref.on("value", function (snapshot) {
                 // console.log(snapshot.val());
                 cache.put(AllMENU_CACHE_KEY, snapshot.val());
                 getCachedMenu();
-                return true;
+                deferred.resolve(true);
             }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
+            return deferred.promise;
         };
 
 

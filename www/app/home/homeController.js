@@ -12,7 +12,7 @@
             });
 
 
-           $scope.menuReady =  menuService.getAllMenuData();
+
 
 
 
