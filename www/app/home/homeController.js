@@ -12,8 +12,8 @@
             });
 
 
-            $scope.onShopOrder = function () {
-                orderService.setOrderType('onShop');
+            $scope.startOrder = function (orderType) {
+                orderService.setOrderType(orderType);
                  $state.go('mainmenu');
             };
 
