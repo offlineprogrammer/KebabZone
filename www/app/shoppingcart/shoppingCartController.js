@@ -8,6 +8,7 @@
     function ShoppingCartController($scope, $state, menuService, orderService, $stateParams, $ionicPopup, $ionicHistory) {
         function init() {
             $scope.items = orderService.get();
+            $scope.orderType = orderService.getOrderType();
             calculateTotal();
        };
 
