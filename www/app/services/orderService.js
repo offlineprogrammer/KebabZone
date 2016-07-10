@@ -8,6 +8,10 @@
     function orderService($ionicHistory, $rootScope, CacheFactory, $firebaseObject, $q, appConfig) {
         var CACHE_NAME = 'kebabZoneCacheOrders';
         var CACHE_KEY = 'Orders';
+
+
+        var ORDERTYPE_CACHE_KEY = 'OrderType';
+
         var orders;
         var cache;
         var cachedmenue;
@@ -80,6 +84,16 @@
         };
 
 
+        service.getOrderType = function (orderType) {
+            return cache.get(ORDERTYPE_CACHE_KEY) !== undefined;
+        };
+
+        service.setOrderType = function (orderType) {
+            cache.put(ORDERTYPE_CACHE_KEY, orderType);
+        };
+
+
+
         service.placeOrders = function (orderItems, cartTotal) {
             if (orderItems.length === 0) {
                 return;
@@ -101,11 +115,11 @@
             });
 
             orders = [];
-
+            service.clearCache();
 
             $rootScope.$broadcast('orderService:orderplaced', service.count());
 
-            
+
 
 
         };
@@ -121,6 +135,11 @@
             $rootScope.$broadcast('orderService:countChanged', service.count());
 
 
+        };
+
+        service.clearCache = function () {
+            cache.remove(CACHE_KEY);
+            cache.remove(ORDERTYPE_CACHE_KEY);
         };
 
 

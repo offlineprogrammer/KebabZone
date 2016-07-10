@@ -27,7 +27,7 @@
             $scope.items = orderService.get();
             
              if ($scope.items.length === 0) {
-                  $state.go('mainmenu');
+                  $state.go('home');
              }
             
             calculateTotal();
@@ -35,7 +35,7 @@
 
          $scope.$on('orderService:orderplaced', function (event, count) {
             $scope.cartCount = 0;
-            $state.go('mainmenu');
+            $state.go('home');
         });
 
         function calculateTotal() {
