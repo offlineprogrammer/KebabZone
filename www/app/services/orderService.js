@@ -84,8 +84,8 @@
         };
 
 
-        service.getOrderType = function (orderType) {
-            return cache.get(ORDERTYPE_CACHE_KEY) !== undefined;
+        service.getOrderType = function () {
+            return cache.get(ORDERTYPE_CACHE_KEY) ;
         };
 
         service.setOrderType = function (orderType) {
@@ -110,6 +110,7 @@
 
                 cartTotal: cartTotal,
                 cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD HH:MM:SS'),
+                orderType:  service.getOrderType(),
                 orders: updatedorderItems
 
             });
