@@ -18,21 +18,20 @@
                         <div class="order-description">{{ orderItem.description }}</div>
                     </div>
                     <div class="col text-right">
-                        <div class="orderitem-quantity" ng-model="orderItem.quantity" ng-change="updateQuantity(orderItem)" ng-click="$event.stopPropagation()"
-                            kz-quantity>
+                        <div class="orderitem-quantity" ng-model="orderItem.quantity" ng-change="updateQuantity(orderItem)" ng-click="$event.stopPropagation()" kz-quantity>
                         </div>
                         <div class="orderitem-price"> {{ orderItem.price | currency:"£" }} </div>
                     </div>
                 </div>
         </ion-list>
-        
+
         <div class="row row-center cart-total">
-                <div class="col">
-                    <div>Total</div>
-                    <div class="cart-terms">Including Tax</div>
-                </div>
-                <div class="col orderitem-price" >{{ cartTotal | currency:"£" }}</div>
+            <div class="col">
+                <div>Total</div>
+                <div class="cart-terms">Including Tax</div>
             </div>
+            <div class="col orderitem-price">{{ cartTotal | currency:"£" }}</div>
+        </div>
 
 
         <ion-list class="list list-inset">
@@ -50,6 +49,34 @@
       <option value="deliveryOrder">Delivery Order</option>
     </select>
   </label>
+
+            <ion-item class="item item-divider">
+                Customer Details
+            </ion-item>
+
+
+            <div class="item countingdays-input  ">
+                <input type="text" placeholder="Name" ng-model="event.name">
+            </div>
+
+            <div class="item countingdays-input  ">
+                <input type="text" placeholder="Time of Collection" ng-model="event.name">
+            </div>
+
+            <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
+                <input type="text" placeholder="Phone" ng-model="event.name">
+            </div>
+
+            <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
+                <input type="text" placeholder="Address" ng-model="event.name">
+            </div>
+
+            <div class="item countingdays-input" ng-show="orderType === 'deliveryOrder'">
+                <input type="text" placeholder="Driver Name" ng-model="event.name">
+            </div>
+
+
+
         </ion-list>
 
 
