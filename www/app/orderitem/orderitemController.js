@@ -7,6 +7,7 @@
 
     function OrderItemController($scope, $state, menuService,orderService,$stateParams,$ionicPopup,$ionicHistory) {
          $scope.cartCount = orderService.count();
+         $scope.orderType = orderService.getOrderType();
         function init() {
             
             var orderItemId = $stateParams.orderId;

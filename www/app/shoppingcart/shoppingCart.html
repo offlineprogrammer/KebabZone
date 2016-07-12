@@ -25,8 +25,6 @@
                     </div>
                 </div>
         </ion-list>
-
-        
         
         <div class="row row-center cart-total">
                 <div class="col">
@@ -35,6 +33,26 @@
                 </div>
                 <div class="col orderitem-price" >{{ cartTotal | currency:"£" }}</div>
             </div>
+
+
+        <ion-list class="list list-inset">
+            <ion-item class="item item-divider">
+                Order Type
+            </ion-item>
+
+            <label class="item item-input item-select">
+    <div class="input-label">
+      Order Type
+    </div>
+    <select ng-model="orderType">
+      <option value="OnShopOrder">OnShop Order</option>
+      <option value="collectionOrder">Collection Order</option>
+      <option value="deliveryOrder">Delivery Order</option>
+    </select>
+  </label>
+        </ion-list>
+
+
 
 
         <div class="orderitem-buybutton ">
