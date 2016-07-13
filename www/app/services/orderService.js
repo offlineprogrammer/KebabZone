@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -22,7 +22,7 @@
         var service = {};
 
 
-        service.updateOrderItemQuantity = function (orderItem) {
+        service.updateOrderItemQuantity = function(orderItem) {
 
             if (orderItem.quantity === 0) {
 
@@ -40,7 +40,7 @@
 
         };
 
-        service.remove = function (orderItem) {
+        service.remove = function(orderItem) {
             var index = service.indexOf(orderItem);
 
             if (index === -1) {
@@ -58,10 +58,10 @@
 
         };
 
-        service.indexOf = function (orderItem) {
+        service.indexOf = function(orderItem) {
             var index = -1;
 
-            _.find(orders, function (nOrderItem, nOrderItemIndex) {
+            _.find(orders, function(nOrderItem, nOrderItemIndex) {
                 if (nOrderItem.name === orderItem.name && nOrderItem.description === orderItem.description) {
                     index = nOrderItem;
                     return true;
@@ -72,7 +72,7 @@
         };
 
 
-        service.addOrder = function (orderItem) {
+        service.addOrder = function(orderItem) {
             var nOrderItem = find(orderItem);
             if (nOrderItem) {
                 nOrderItem.quantity += 1;
@@ -84,17 +84,32 @@
         };
 
 
-        service.getOrderType = function () {
-            return cache.get(ORDERTYPE_CACHE_KEY) ;
+        service.getOrderType = function() {
+            return cache.get(ORDERTYPE_CACHE_KEY);
         };
 
-        service.setOrderType = function (orderType) {
+        service.getDailyReport = function() {
+            var deferred = $q.defer();
+            var ref = new Firebase(appConfig.fireBaseURL);
+            var ordersRef = ref.child("orders");
+            ordersRef.orderByChild("cartdate").startAt("2016-07-13").on("value", function(snapshot) {
+                //console.log(snapshot.key());
+                console.log(snapshot.numChildren());
+                deferred.resolve(true);
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+            return deferred.promise;
+
+        };
+
+        service.setOrderType = function(orderType) {
             cache.put(ORDERTYPE_CACHE_KEY, orderType);
         };
 
 
 
-        service.placeOrders = function (orderItems, cartTotal, customerDetails) {
+        service.placeOrders = function(orderItems, cartTotal, customerDetails) {
             if (orderItems.length === 0) {
                 return;
             }
@@ -102,18 +117,18 @@
             var updatedorderItems = angular.copy(orderItems);
 
             var ref = new Firebase(appConfig.fireBaseURL);
-            var usersRef = ref.child("orders");
-           
+            var ordersRef = ref.child("orders");
 
 
-            var newPostRef = usersRef.push();
+
+            var newPostRef = ordersRef.push();
             newPostRef.set({
 
                 cartTotal: cartTotal,
                 cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD hh:mm:ss'),
-                orderType:  service.getOrderType(),
+                orderType: service.getOrderType(),
                 orders: updatedorderItems,
-                customerDetails:customerDetails
+                customerDetails: customerDetails
 
             });
 
@@ -128,7 +143,7 @@
         };
 
 
-        service.updateCache = function () {
+        service.updateCache = function() {
             if (orders.length === 0) {
                 cache.remove(CACHE_KEY);
             } else {
@@ -140,14 +155,14 @@
 
         };
 
-        service.clearCache = function () {
+        service.clearCache = function() {
             cache.remove(CACHE_KEY);
             cache.remove(ORDERTYPE_CACHE_KEY);
         };
 
 
 
-        service.get = function () {
+        service.get = function() {
             var jsonObject = angular.fromJson(cache.get(CACHE_KEY)) || [];
             return _.compact(angular.copy(jsonObject));
         };
@@ -156,11 +171,11 @@
 
 
 
-        service.count = function () {
+        service.count = function() {
 
             var cartCount = 0;
 
-            _.each(orders, function (item) {
+            _.each(orders, function(item) {
 
                 cartCount += item.quantity;
 
@@ -186,7 +201,7 @@
             if (!orderItem) {
                 return false;
             } else {
-                return _.find(orders, function (nOrderItem) {
+                return _.find(orders, function(nOrderItem) {
                     return nOrderItem.name === orderItem.name && nOrderItem.description === orderItem.description;
                 });
             }
@@ -202,4 +217,4 @@
 
 
     }
-} ());
+}());

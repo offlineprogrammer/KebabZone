@@ -17,6 +17,10 @@
                 $state.go('mainmenu');
             };
 
+            $scope.dailyReport = function() {
+                $state.go('dailyreport');
+            };
+
         }
 
         $timeout(function() {
