@@ -16,9 +16,11 @@
             $state.go('mainmenu');
         };
 
+         $scope.customer = {};
+
 
         $scope.Order = function () {
-            orderService.placeOrders($scope.items, $scope.cartTotal);
+            orderService.placeOrders($scope.items, $scope.cartTotal,$scope.customer);
         };
 
 

@@ -56,23 +56,23 @@
 
 
             <div class="item countingdays-input  ">
-                <input type="text" placeholder="Name" ng-model="event.name">
+                <input type="text" placeholder="Name" ng-model="customer.name">
             </div>
 
             <div class="item countingdays-input  ">
-                <input type="text" placeholder="Time of Collection" ng-model="event.name">
+                <input type="text" placeholder="Time of Collection" ng-model="customer.timeOfCollection">
             </div>
 
             <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
-                <input type="text" placeholder="Phone" ng-model="event.name">
+                <input type="text" placeholder="Phone" ng-model="customer.phone">
             </div>
 
             <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
-                <input type="text" placeholder="Address" ng-model="event.name">
+                <input type="text" placeholder="Address" ng-model="customer.address">
             </div>
 
             <div class="item countingdays-input" ng-show="orderType === 'deliveryOrder'">
-                <input type="text" placeholder="Driver Name" ng-model="event.name">
+                <input type="text" placeholder="Driver Name" ng-model="customer.driverName">
             </div>
 
 

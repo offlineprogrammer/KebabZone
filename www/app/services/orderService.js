@@ -94,7 +94,7 @@
 
 
 
-        service.placeOrders = function (orderItems, cartTotal) {
+        service.placeOrders = function (orderItems, cartTotal, customerDetails) {
             if (orderItems.length === 0) {
                 return;
             }
@@ -111,7 +111,8 @@
                 cartTotal: cartTotal,
                 cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD HH:MM:SS'),
                 orderType:  service.getOrderType(),
-                orders: updatedorderItems
+                orders: updatedorderItems,
+                customerDetails:customerDetails
 
             });
 
