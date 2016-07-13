@@ -103,13 +103,14 @@
 
             var ref = new Firebase(appConfig.fireBaseURL);
             var usersRef = ref.child("orders");
+           
 
 
             var newPostRef = usersRef.push();
             newPostRef.set({
 
                 cartTotal: cartTotal,
-                cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD HH:MM:SS'),
+                cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD hh:mm:ss'),
                 orderType:  service.getOrderType(),
                 orders: updatedorderItems,
                 customerDetails:customerDetails
