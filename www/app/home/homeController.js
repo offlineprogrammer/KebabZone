@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -12,28 +12,19 @@
             });
 
 
-            $scope.startOrder = function (orderType) {
+            $scope.startOrder = function(orderType) {
                 orderService.setOrderType(orderType);
-                 $state.go('mainmenu');
+                $state.go('mainmenu');
             };
-
-
-
-
-
-
-
-
-
 
         }
 
-        $timeout(function () {
+        $timeout(function() {
             init();
 
-            $scope.$on('$ionicView.beforeEnter', function () {
+            $scope.$on('$ionicView.beforeEnter', function() {
                 init();
             });
         }, 2000);
     }
-} ());
+}());

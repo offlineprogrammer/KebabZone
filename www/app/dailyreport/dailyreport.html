@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-search-strong" ui-sref="search"></button>
+        </ion-nav-buttons>
+
+        <ion-nav-title>Daily Report</ion-nav-title>
+
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
+            <div class="cart-count" ng-class="{ none: cartCount === 0 }">{{cartCount}}</div>
+        </ion-nav-buttons>
+
+        <ion-content class="outer text-center">
+            <div class="list card">
+                <div class="item item-avatar">
+                    <div class="orderitem-title">{{ dailyReport.transactionsCount }}</div>
+                </div>
+                <div class="item item-avatar">
+                    <div class="orderitem-title">{{ dailyReport.totalOrders }}</div>
+                </div>
+            </div>
+        </ion-content>
+</ion-view>

@@ -14,7 +14,11 @@
                     templateUrl: 'app/home/home.html',
                     controller: 'homeController',
                 })
-
+                .state('dailyreport', {
+                    url: '/dailyreport',
+                    templateUrl: 'app/dailyreport/dailyreport.html',
+                    controller: 'dailyreportController',
+                })
                 .state('mainmenu', {
                      cache: false,
                     url: '/mainmenu',
