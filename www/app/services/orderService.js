@@ -94,8 +94,13 @@
             var ordersRef = ref.child("orders");
             ordersRef.orderByChild("cartdate").startAt("2016-07-13").on("value", function(snapshot) {
                 //console.log(snapshot.key());
+                var dailyReport ={
+
+                    transactionsCount : snapshot.numChildren()
+
+                }
                 console.log(snapshot.numChildren());
-                deferred.resolve(true);
+                deferred.resolve(dailyReport);
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });

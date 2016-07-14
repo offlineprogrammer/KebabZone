@@ -7,7 +7,10 @@
 
     function DailyReportController($ionicHistory, $scope, $state, appConfig, orderService) {
         function init() {
-            $scope.dailyReport = orderService.getDailyReport();
+            orderService.getDailyReport().then(function (data) {
+
+                 $scope.dailyReport = data;
+            })
         }
 
         init();
