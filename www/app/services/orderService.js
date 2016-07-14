@@ -92,14 +92,29 @@
             var deferred = $q.defer();
             var ref = new Firebase(appConfig.fireBaseURL);
             var ordersRef = ref.child("orders");
-            ordersRef.orderByChild("cartdate").startAt("2016-07-13").on("value", function(snapshot) {
+            var cartTotal = 0;
+            var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
+            ordersRef.orderByChild("cartdate").startAt(reportDate).on("value", function(snapshot) {
                 //console.log(snapshot.key());
-                var dailyReport ={
+               
+                console.log(snapshot.numChildren());
+                 console.log('messages in range', snapshot.val());
+               var   messages = angular.fromJson(snapshot.val()) || [];
+                 _.each(messages, function (message) {
+                //message.dateReceived = new Date(message.dateReceived);
+                console.log('cartTotal ', message.cartTotal);
+                cartTotal += message.cartTotal;
+                console.log('sum ', cartTotal);
 
-                    transactionsCount : snapshot.numChildren()
+            });
+
+             var dailyReport ={
+
+                    transactionsCount : snapshot.numChildren() || 0,
+                    totalOrders : cartTotal || 0
 
                 }
-                console.log(snapshot.numChildren());
+
                 deferred.resolve(dailyReport);
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
