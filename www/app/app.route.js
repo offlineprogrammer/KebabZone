@@ -15,6 +15,7 @@
                     controller: 'homeController',
                 })
                 .state('dailyreport', {
+                    cache: false,
                     url: '/dailyreport',
                     templateUrl: 'app/dailyreport/dailyreport.html',
                     controller: 'dailyreportController',
@@ -44,11 +45,6 @@
                     url: '/burgersmenu/otherburgersmenu',
                     templateUrl: 'app/burgers/otherburger/otherburgermenu.html',
                     controller: 'otherburgerController',
-                })
-                .state('mealdeals', {
-                    url: '/mealdeals',
-                    templateUrl: 'app/mealdeals/mealdealmenu.html',
-                    controller: 'mealdealmenuController',
                 })
                 .state('kebabs', {
                     url: '/kebabs',

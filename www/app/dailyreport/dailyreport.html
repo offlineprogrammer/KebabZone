@@ -7,18 +7,22 @@
         <ion-nav-title>Daily Report</ion-nav-title>
 
         <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear ion-ios-cart" ng-disabled="cartCount === 0" ng-click="goToCart()"></button>
-            <div class="cart-count" ng-class="{ none: cartCount === 0 }">{{cartCount}}</div>
+
         </ion-nav-buttons>
 
         <ion-content class="outer text-center">
             <div class="list card">
                 <div class="item item-avatar">
-                    <div class="orderitem-title">Number Of Transactions: {{ dailyReport.transactionsCount }}</div>
+                    <div class="orderitem-title"> {{ dailyReport.transactionsCount }} Orders </div>
                 </div>
                 <div class="item item-avatar">
                     <div class="orderitem-title">Total: {{ dailyReport.totalOrders | currency:"£" }}</div>
                 </div>
             </div>
+            <div class="orderitem-buybutton ">
+
+                <button class="button button-assertive button-block button-bold" ng-click="Order()">Print</button>
+            </div>
+
         </ion-content>
 </ion-view>

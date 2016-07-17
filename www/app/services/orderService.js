@@ -88,6 +88,29 @@
             return cache.get(ORDERTYPE_CACHE_KEY);
         };
 
+        service.getOrderNo = function() {
+            var deferred = $q.defer();
+
+            var ref = new Firebase(appConfig.fireBaseURL);
+            var ordersRef = ref.child("orders");
+            var orderNo = 1;
+            var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
+            ordersRef.orderByChild("cartdate").startAt(reportDate).limitToLast(1).on("value", function(snapshot) {
+                var lastOrder = angular.fromJson(snapshot.val()) || [];
+                lastOrder = _.compact(lastOrder);
+                orderNo = lastOrder[0].orderNo
+                orderNo +=1;
+
+                deferred.resolve(orderNo);
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+                deferred.resolve(orderNo);
+            });
+            return deferred.promise;
+
+        };
+
+
         service.getDailyReport = function() {
             var deferred = $q.defer();
             var ref = new Firebase(appConfig.fireBaseURL);
@@ -96,22 +119,22 @@
             var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
             ordersRef.orderByChild("cartdate").startAt(reportDate).on("value", function(snapshot) {
                 //console.log(snapshot.key());
-               
+
                 console.log(snapshot.numChildren());
-                 console.log('messages in range', snapshot.val());
-               var   messages = angular.fromJson(snapshot.val()) || [];
-                 _.each(messages, function (message) {
-                //message.dateReceived = new Date(message.dateReceived);
-                console.log('cartTotal ', message.cartTotal);
-                cartTotal += message.cartTotal;
-                console.log('sum ', cartTotal);
+                console.log('messages in range', snapshot.val());
+                var messages = angular.fromJson(snapshot.val()) || [];
+                _.each(messages, function(message) {
+                    //message.dateReceived = new Date(message.dateReceived);
+                    console.log('cartTotal ', message.cartTotal);
+                    cartTotal += message.cartTotal;
+                    console.log('sum ', cartTotal);
 
-            });
+                });
 
-             var dailyReport ={
+                var dailyReport = {
 
-                    transactionsCount : snapshot.numChildren() || 0,
-                    totalOrders : cartTotal || 0
+                    transactionsCount: snapshot.numChildren() || 0,
+                    totalOrders: cartTotal || 0
 
                 }
 
@@ -138,24 +161,29 @@
 
             var ref = new Firebase(appConfig.fireBaseURL);
             var ordersRef = ref.child("orders");
+            service.getOrderNo().then(function(data) {
+
+                var newPostRef = ordersRef.push();
+                newPostRef.set({
+
+                    cartTotal: cartTotal,
+                    cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD hh:mm:ss'),
+                    orderType: service.getOrderType(),
+                    orders: updatedorderItems,
+                    customerDetails: customerDetails,
+                    orderNo: data
+
+                });
+
+                orders = [];
+                service.clearCache();
+
+                $rootScope.$broadcast('orderService:orderplaced', service.count());
+            })
 
 
 
-            var newPostRef = ordersRef.push();
-            newPostRef.set({
 
-                cartTotal: cartTotal,
-                cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD hh:mm:ss'),
-                orderType: service.getOrderType(),
-                orders: updatedorderItems,
-                customerDetails: customerDetails
-
-            });
-
-            orders = [];
-            service.clearCache();
-
-            $rootScope.$broadcast('orderService:orderplaced', service.count());
 
 
 
