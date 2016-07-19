@@ -13,7 +13,7 @@
        };
 
         $scope.goBack = function () {
-            $state.go('mainmenu');
+            $state.go('home');
         };
 
          $scope.customer = {};

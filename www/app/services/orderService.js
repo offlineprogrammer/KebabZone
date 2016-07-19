@@ -97,6 +97,9 @@
             var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
             ordersRef.orderByChild("cartdate").startAt(reportDate).limitToLast(1).on("value", function(snapshot) {
                 var lastOrder = angular.fromJson(snapshot.val()) || [];
+                if (!lastOrder || lastOrder.length==0){
+                deferred.resolve(orderNo);    
+                }
                 lastOrder = _.compact(lastOrder);
                 orderNo = lastOrder[0].orderNo
                 orderNo +=1;
