@@ -57,11 +57,13 @@
     color: #D7410B;
 }
 
-.orderitem-price {
+.orderitem-price input {
     font-weight: bold;
     padding-top: 15px;
     white-space: nowrap;
     color: #000000;
+    width:100%;
+    text-align: center;
     
 }
 

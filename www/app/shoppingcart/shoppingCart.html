@@ -25,7 +25,17 @@
                 </div>
         </ion-list>
 
-        <div class="row row-center cart-total">
+        <div class="row row-center cart-total" ng-show="orderType === 'deliveryOrder'">
+            <div class="col">
+                <div>Delivery Charges (£)</div>
+                
+            </div>
+            <div class="col orderitem-price">
+            <input type="number" placeholder="{{deliveryCharges}}" ng-model="deliveryCharges" ng-change="updateTotal()">
+            </div>
+        </div>
+
+              <div class="row row-center cart-total">
             <div class="col">
                 <div>Total</div>
                 <div class="cart-terms">Including Tax</div>
