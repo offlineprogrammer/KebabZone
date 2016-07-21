@@ -8,7 +8,7 @@
     <ion-content class="outer text-center" ng-init="init()">
 
         <ion-list>
-            <ion-item class="item-card no-padding item-text-wrap" ng-repeat="orderItem in items">
+            <ion-item class="item-card no-padding item-text-wrap" ng-repeat="orderItem in orderCart.items">
                 <div class="row row-top">
                     <div class="col col-10 no-padding cart-image-container">
                         <img ng-src="{{ orderItem.image }}">
@@ -25,13 +25,13 @@
                 </div>
         </ion-list>
 
-        <div class="row row-center cart-total" ng-show="orderType === 'deliveryOrder'">
+        <div class="row row-center cart-total" ng-show="orderCart.orderType === 'deliveryOrder'">
             <div class="col">
                 <div>Delivery Charges (£)</div>
                 
             </div>
             <div class="col orderitem-price">
-            <input type="number" placeholder="{{deliveryCharges}}" ng-model="deliveryCharges" ng-change="updateTotal()">
+            <input type="number" placeholder="{{deliveryCharges}}" ng-model="orderCart.deliveryCharges" ng-change="calculateTotal()">
             </div>
         </div>
 
@@ -53,7 +53,7 @@
     <div class="input-label">
       Order Type
     </div>
-    <select ng-model="orderType">
+    <select ng-model="orderCart.orderType" ng-change="calculateTotal()">
       <option value="OnShopOrder">OnShop Order</option>
       <option value="collectionOrder">Collection Order</option>
       <option value="deliveryOrder">Delivery Order</option>
@@ -73,15 +73,15 @@
                 <input type="text" placeholder="Time of Collection" ng-model="customer.timeOfCollection">
             </div>
 
-            <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
+            <div class="item countingdays-input" ng-show="orderCart.orderType != 'OnShopOrder' ">
                 <input type="text" placeholder="Phone" ng-model="customer.phone">
             </div>
 
-            <div class="item countingdays-input" ng-show="orderType != 'OnShopOrder' ">
+            <div class="item countingdays-input" ng-show="orderCart.orderType != 'OnShopOrder' ">
                 <input type="text" placeholder="Address" ng-model="customer.address">
             </div>
 
-            <div class="item countingdays-input" ng-show="orderType === 'deliveryOrder'">
+            <div class="item countingdays-input" ng-show="orderCart.orderType === 'deliveryOrder'">
                 <input type="text" placeholder="Driver Name" ng-model="customer.driverName">
             </div>
 

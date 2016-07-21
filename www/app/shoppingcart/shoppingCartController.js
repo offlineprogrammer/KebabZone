@@ -8,9 +8,14 @@
     function ShoppingCartController($scope, $state, menuService, orderService, $stateParams, $ionicPopup, $ionicHistory) {
         function init() {
             $scope.items = orderService.get();
-            $scope.orderType = orderService.getOrderType();
-            $scope.deliveryCharges = 2;
-            calculateTotal();
+            $scope.orderCart = {
+                deliveryCharges: 2,
+                orderType: orderService.getOrderType(),
+                items: orderService.get()
+            };
+
+
+            $scope.calculateTotal();
         };
 
         $scope.goBack = function() {
@@ -21,29 +26,35 @@
 
 
         $scope.Order = function() {
-            orderService.placeOrders($scope.items, $scope.cartTotal, $scope.customer);
+            orderService.placeOrders($scope.orderCart.items, $scope.cartTotal, $scope.customer);
         };
 
 
         $scope.updateQuantity = function(orderItem) {
             orderItem.quantity = Number(orderItem.quantity);
-            orderService.updateOrderItemQuantity(orderItem);
-            $scope.items = orderService.get();
+             $scope.calculateTotal();
+             
+            //$scope.orderCart.items = [];
+            orderService.updateOrderItemQuantity(orderItem).then(function(data) {
 
-            if ($scope.items.length === 0) {
-                $state.go('home');
-            }
+                // $scope.orderCart.items = orderService.get();
 
-            calculateTotal();
+                // if ($scope.orderCart.items.length === 0) {
+                //     $state.go('home');
+                // }
+
+                // $scope.calculateTotal();
+            })
+
         };
 
-         $scope.updateTotal = function() {
-             if ($scope.orderType === 'deliveryOrder' ) {
-                $scope.cartTotal = $scope.cartTotal + $scope.deliveryCharges;
+        $scope.updateTotal = function() {
+            if ($scope.orderCart.orderType === 'deliveryOrder') {
+                $scope.cartTotal = $scope.cartTotal + $scope.orderCart.deliveryCharges;
             }
 
 
-           
+
         };
 
 
@@ -54,16 +65,17 @@
             $state.go('home');
         });
 
-        function calculateTotal() {
+
+        $scope.calculateTotal = function() {
 
             var total = 0;
 
-            _.each($scope.items, function(item) {
+            _.each($scope.orderCart.items, function(item) {
                 total += item.quantity * item.price;
             });
 
-            if ($scope.orderType === 'deliveryOrder' ) {
-                total = total + $scope.deliveryCharges;
+            if ($scope.orderCart.orderType === 'deliveryOrder') {
+                total = total + $scope.orderCart.deliveryCharges;
             }
 
 
