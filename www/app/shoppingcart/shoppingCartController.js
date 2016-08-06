@@ -26,7 +26,13 @@
 
 
         $scope.Order = function() {
-            orderService.placeOrders($scope.orderCart.items, $scope.cartTotal, $scope.customer);
+            var orderDetails ={
+                orderItems:$scope.orderCart.items,
+                cartTotal:$scope.cartTotal,
+                customerDetails:$scope.customer,
+                deliveryCharges: $scope.orderCart.deliveryCharges
+            }
+            orderService.placeOrders(orderDetails);
         };
 
 

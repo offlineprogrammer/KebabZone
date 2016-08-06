@@ -161,12 +161,12 @@
 
 
 
-        service.placeOrders = function(orderItems, cartTotal, customerDetails) {
-            if (orderItems.length === 0) {
+        service.placeOrders = function(orderDetails) {
+            if (orderDetails.orderItems.length === 0) {
                 return;
             }
 
-            var updatedorderItems = angular.copy(orderItems);
+            var updatedorderItems = angular.copy(orderDetails.orderItems);
 
             var ref = new Firebase(appConfig.fireBaseURL);
             var ordersRef = ref.child("orders");
@@ -175,11 +175,12 @@
                 var newPostRef = ordersRef.push();
                 newPostRef.set({
 
-                    cartTotal: cartTotal,
+                    cartTotal: orderDetails.cartTotal,
                     cartdate: moment(new Date(Date.now())).format('YYYY-MM-DD hh:mm:ss'),
                     orderType: service.getOrderType(),
                     orders: updatedorderItems,
-                    customerDetails: customerDetails,
+                    customerDetails: orderDetails.customerDetails,
+                    deliveryCharges: orderDetails.deliveryCharges,
                     orderNo: data
 
                 });
