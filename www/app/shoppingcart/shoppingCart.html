@@ -25,7 +25,7 @@
                 </div>
         </ion-list>
 
-        <div class="row row-center cart-total" ng-show="orderCart.orderType === 'deliveryOrder'">
+        <div class="row row-center cart-total" ng-show="(orderCart.orderType === 'deliveryOrder') || (orderCart.orderType === 'justEatOrder')">
             <div class="col">
                 <div>Delivery Charges (£)</div>
                 
@@ -57,6 +57,7 @@
       <option value="OnShopOrder">OnShop Order</option>
       <option value="collectionOrder">Collection Order</option>
       <option value="deliveryOrder">Delivery Order</option>
+      <option value="justEatOrder">JustEat Order</option>
     </select>
   </label>
 
@@ -81,7 +82,7 @@
                 <input type="text" placeholder="Address" ng-model="customer.address">
             </div>
 
-            <div class="item countingdays-input" ng-show="orderCart.orderType === 'deliveryOrder'">
+            <div class="item countingdays-input" ng-show="(orderCart.orderType === 'deliveryOrder') || (orderCart.orderType === 'justEatOrder')">
                 <input type="text" placeholder="Driver Name" ng-model="customer.driverName">
             </div>
 

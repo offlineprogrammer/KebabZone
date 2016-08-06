@@ -49,7 +49,7 @@
         };
 
         $scope.updateTotal = function() {
-            if ($scope.orderCart.orderType === 'deliveryOrder') {
+            if ($scope.orderCart.orderType === 'deliveryOrder' || 'justEatOrder' ) {
                 $scope.cartTotal = $scope.cartTotal + $scope.orderCart.deliveryCharges;
             }
 
@@ -74,7 +74,9 @@
                 total += item.quantity * item.price;
             });
 
-            if ($scope.orderCart.orderType === 'deliveryOrder') {
+           
+
+             if ($scope.orderCart.orderType.match(/^(deliveryOrder|justEatOrder)$/)) {
                 total = total + $scope.orderCart.deliveryCharges;
             }
 
