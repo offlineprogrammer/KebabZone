@@ -21,6 +21,10 @@
                 $state.go('dailyreport');
             };
 
+             $scope.driverReport = function() {
+                $state.go('driverreport');
+            };
+
         }
 
         $timeout(function() {

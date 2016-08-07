@@ -20,6 +20,12 @@
                     templateUrl: 'app/dailyreport/dailyreport.html',
                     controller: 'dailyreportController',
                 })
+                .state('driverreport', {
+                    cache: false,
+                    url: '/driverreport',
+                    templateUrl: 'app/driverrepot/driverreport.html',
+                    controller: 'driverreportController',
+                })
                 .state('mainmenu', {
                      cache: false,
                     url: '/mainmenu',

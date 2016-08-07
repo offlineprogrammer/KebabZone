@@ -1,0 +1,28 @@
+<ion-view>
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-home" ui-sref="home"></button>
+        </ion-nav-buttons>
+
+        <ion-nav-title>Driver Report</ion-nav-title>
+
+        <ion-nav-buttons side="right">
+
+        </ion-nav-buttons>
+
+        <ion-content class="outer text-center">
+            <div class="list card">
+                <div class="item item-avatar">
+                    <div class="orderitem-title"> {{ dailyReport.transactionsCount }} Orders </div>
+                </div>
+                <div class="item item-avatar">
+                    <div class="orderitem-title">Total: {{ dailyReport.totalOrders | currency:"£" }}</div>
+                </div>
+            </div>
+            <div class="orderitem-buybutton ">
+
+                <button class="button button-assertive button-block button-bold" ng-click="Order()">Print</button>
+            </div>
+
+        </ion-content>
+</ion-view>

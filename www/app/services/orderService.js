@@ -120,6 +120,42 @@
         };
 
 
+        service.getDriverReport = function() {
+            var deferred = $q.defer();
+            var ref = new Firebase(appConfig.fireBaseURL);
+            var ordersRef = ref.child("orders");
+            var cartTotal = 0;
+            var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
+            ordersRef.orderByChild("cartdate").startAt(reportDate).on("value", function(snapshot) {
+                //console.log(snapshot.key());
+
+                console.log(snapshot.numChildren());
+                console.log('messages in range', snapshot.val());
+                var messages = angular.fromJson(snapshot.val()) || [];
+                _.each(messages, function(message) {
+                    //message.dateReceived = new Date(message.dateReceived);
+                    console.log('cartTotal ', message.cartTotal);
+                    cartTotal += message.cartTotal;
+                    console.log('sum ', cartTotal);
+
+                });
+
+                var dailyReport = {
+
+                    transactionsCount: snapshot.numChildren() || 0,
+                    totalOrders: cartTotal || 0
+
+                }
+
+                deferred.resolve(dailyReport);
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+            return deferred.promise;
+
+        };
+
+
         service.getDailyReport = function() {
             var deferred = $q.defer();
             var ref = new Firebase(appConfig.fireBaseURL);
