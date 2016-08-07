@@ -26,6 +26,11 @@
 
 
         $scope.Order = function() {
+
+             if ($scope.orderCart.orderType.match(/^(deliveryOrder|justEatOrder)$/) == null) {
+                $scope.orderCart.deliveryCharges = 0;
+            }  
+                      
             var orderDetails ={
                 orderItems:$scope.orderCart.items,
                 cartTotal:$scope.cartTotal,
