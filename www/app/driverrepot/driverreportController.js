@@ -7,9 +7,9 @@
 
     function DriverReportController($ionicHistory, $scope, $state, appConfig, orderService) {
         function init() {
-            orderService.getDailyReport().then(function (data) {
+            orderService.getTodayDrivers().then(function (data) {
 
-                 $scope.dailyReport = data;
+                 $scope.todayDrivers = data;
             })
         }
 

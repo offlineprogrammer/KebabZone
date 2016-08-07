@@ -131,29 +131,74 @@
 
                 console.log(snapshot.numChildren());
                 console.log('messages in range', snapshot.val());
-                var messages = angular.fromJson(snapshot.val()) || [];
-                _.each(messages, function(message) {
-                    //message.dateReceived = new Date(message.dateReceived);
-                    console.log('cartTotal ', message.cartTotal);
-                    cartTotal += message.cartTotal;
-                    console.log('sum ', cartTotal);
+                var todayOrders = angular.fromJson(snapshot.val()) || [];
 
+                var justEatOrders = _.filter(todayOrders, function(jEOrder) {
+                    return jEOrder.orderType == 'justEatOrder'
                 });
 
-                var dailyReport = {
+                var ordersTypes = _.groupBy(todayOrders, 'orderType');
 
-                    transactionsCount: snapshot.numChildren() || 0,
-                    totalOrders: cartTotal || 0
+                console.log('ordersTypes ', ordersTypes);
 
-                }
 
-                deferred.resolve(dailyReport);
+
+                deferred.resolve('Empty');
             }, function(errorObject) {
                 console.log("The read failed: " + errorObject.code);
             });
             return deferred.promise;
 
         };
+
+        service.getTodayDrivers = function() {
+            var deferred = $q.defer();
+            var drivers = [];
+            var ref = new Firebase(appConfig.fireBaseURL);
+            var ordersRef = ref.child("orders");
+            var reportDate = moment(new Date(Date.now())).format('YYYY-MM-DD ');
+            ordersRef.orderByChild("cartdate").startAt(reportDate).on("value", function(snapshot) {
+                var todayOrders = angular.fromJson(snapshot.val()) || [];
+
+
+                // var ordersTypes = _.groupBy(todayOrders, 'customerDetails.driverName');
+
+                var ordersTypes = _(todayOrders).groupBy(function(o) {
+                    if (o.customerDetails !== undefined && o.customerDetails.driverName !== undefined) {
+                        return o.customerDetails.driverName;
+
+                    }
+
+                });
+
+                console.log('ordersTypes ', ordersTypes);
+                _.each(ordersTypes, function(ordersType) {
+                    if (ordersType[0].customerDetails.driverName) {
+
+                        var driverReport = {
+
+                            driverName: ordersType[0].customerDetails.driverName,
+                            orders: ordersType.length
+
+                        }
+                        drivers.push(driverReport);
+                    }
+
+                });
+
+
+                deferred.resolve(drivers);
+
+
+
+
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+            return deferred.promise;
+
+        };
+
 
 
         service.getDailyReport = function() {

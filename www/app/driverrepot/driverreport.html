@@ -11,18 +11,10 @@
         </ion-nav-buttons>
 
         <ion-content class="outer text-center">
-            <div class="list card">
-                <div class="item item-avatar">
-                    <div class="orderitem-title"> {{ dailyReport.transactionsCount }} Orders </div>
-                </div>
-                <div class="item item-avatar">
-                    <div class="orderitem-title">Total: {{ dailyReport.totalOrders | currency:"£" }}</div>
-                </div>
-            </div>
-            <div class="orderitem-buybutton ">
-
-                <button class="button button-assertive button-block button-bold" ng-click="Order()">Print</button>
-            </div>
-
+            <ion-list>
+            <ion-item class="item-card no-padding item-text-wrap" ng-repeat="todayDriver in todayDrivers">
+               {{ todayDriver.driverName }}
+            </ion-item>
+        </ion-list>
         </ion-content>
 </ion-view>
